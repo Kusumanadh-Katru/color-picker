@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { use } from "react";
 function ToDoList() {
-  const [tasks, setTasks] = useState(["Wakeup", "Brush"]);
+  const [tasks, setTasks] = useState(() => {
+    // Fetch tasks from localStorage on initial load
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : ["Wakeup", "Brush"];
+  });
   const [newTask, setNewTask] = useState("");
 
   function handleInputChange(event) {
     setNewTask(event.target.value);
   }
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function addTask() {
     if (newTask.trim() !== "") {
@@ -15,27 +23,30 @@ function ToDoList() {
   }
 
   function deleteTask(index) {
-    const updatedTasks = tasks.filter((_,i)=>i!==index)
-    setTasks(updatedTasks)
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
   }
 
   function moveTaskUp(index) {
-    if(index>0){
-        const updatedTasks =[...tasks];
-        [updatedTasks[index],updatedTasks[index-1]]= [updatedTasks[index-1],updatedTasks[index]]
-        setTasks(updatedTasks)
+    if (index > 0) {
+      const updatedTasks = [...tasks];
+      [updatedTasks[index], updatedTasks[index - 1]] = [
+        updatedTasks[index - 1],
+        updatedTasks[index],
+      ];
+      setTasks(updatedTasks);
     }
   }
 
   function moveTaskDown(index) {
-     if (index < tasks.length-1) {
-       const updatedTasks = [...tasks];
-       [updatedTasks[index], updatedTasks[index + 1]] = [
-         updatedTasks[index + 1],
-         updatedTasks[index],
-       ];
-       setTasks(updatedTasks);
-     }
+    if (index < tasks.length - 1) {
+      const updatedTasks = [...tasks];
+      [updatedTasks[index], updatedTasks[index + 1]] = [
+        updatedTasks[index + 1],
+        updatedTasks[index],
+      ];
+      setTasks(updatedTasks);
+    }
   }
   return (
     <div className="to-do-list">
