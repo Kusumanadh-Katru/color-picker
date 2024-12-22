@@ -3,12 +3,13 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import ColorPicker from './ColorPicker'
+import ToDoList from './to-do/ToDoList'
 
 function App() {
 
   return (
     <>
-      <ColorPicker/>
+     <ToDoList/>
     </>
   )
 }
