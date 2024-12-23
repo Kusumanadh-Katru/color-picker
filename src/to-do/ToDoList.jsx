@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { use } from "react";
+
 function ToDoList() {
   const [tasks, setTasks] = useState(() => {
     // Fetch tasks from localStorage on initial load
     const savedTasks = localStorage.getItem("tasks");
-    return savedTasks ? JSON.parse(savedTasks) : ["Wakeup", "Brush"];
+    return savedTasks ? JSON.parse(savedTasks) : ["Darwinbox", "Standup"];
   });
+  
   const [newTask, setNewTask] = useState("");
+  
 
   function handleInputChange(event) {
     setNewTask(event.target.value);
   }
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
+
   }, [tasks]);
 
   function addTask() {
@@ -22,9 +25,17 @@ function ToDoList() {
     }
   }
 
+  function handleKeyPress(event) {
+    if (event.key === "Enter") {
+      addTask();
+    }
+  }
+
   function deleteTask(index) {
     const updatedTasks = tasks.filter((_, i) => i !== index);
     setTasks(updatedTasks);
+    console.log("Deleted task", tasks[index]);
+    // setDeletedTasks([...deletedTasks,tasks[index]])
   }
 
   function moveTaskUp(index) {
@@ -58,6 +69,7 @@ function ToDoList() {
           placeholder="Enter a task..."
           value={newTask}
           onChange={handleInputChange}
+          onKeyDown={handleKeyPress}
         />
         <button className="add-button" onClick={addTask}>
           Add
@@ -79,6 +91,8 @@ function ToDoList() {
           </li>
         ))}
       </ol>
+    
+      
     </div>
   );
 }

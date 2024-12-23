@@ -4,12 +4,13 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import ColorPicker from './ColorPicker'
 import ToDoList from './to-do/ToDoList'
+import DigitalClock from './digital-clock/DigitalClock'
 
 function App() {
 
   return (
     <>
-     <ToDoList/>
+     <DigitalClock/>
     </>
   )
 }

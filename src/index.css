@@ -1,8 +1,8 @@
-body {
+/* body {
   font-family: Arial, Helvetica, sans-serif;
-}
+} */
 
-.color-picker-container {
+/* .color-picker-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,15 +43,15 @@ input[type="color"]{
   padding: 5px;
   border-radius: 10px;
   border: 3px solid hsl(0,0,80%)
-}
+} */
 
 /* TO DO LIST CSS */
 
-body{
+/* body{
   background-color: hsl(0,0%,10%);
-}
+} */
 
-.to-do-list{
+/* .to-do-list{
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   margin-top: 100px;
@@ -119,4 +119,39 @@ li{
   font-size:1.4rem;
   margin-left:10px;
   
+} */
+
+/* Digital Clock */
+
+body{
+  background-image: url(./assets/Image.jpeg);
+  background-position:center ;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  align-items: center;
+}
+
+.timer{
+  color: white;
+}
+
+.clock-container{
+  backdrop-filter: blur(5px);
+  width: 100vw;
+  padding: 10px 0;
+}
+
+.clock{
+  color:white;
+  font-size: 6rem;
+  font-weight: bold;
+  font-family: monospace;
+  text-align: center;
+  text-shadow: 3px 3px 5px hsla(0,0%,0%,0.75);
 }
